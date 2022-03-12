@@ -35,4 +35,9 @@ public class UserRoleService implements IUserRoleService{
 		return userRoleRepository.deleteUserRole(id);
 	}
 
+	@Override
+	public int count() {
+		return userRoleRepository.count();
+	}
+
 }

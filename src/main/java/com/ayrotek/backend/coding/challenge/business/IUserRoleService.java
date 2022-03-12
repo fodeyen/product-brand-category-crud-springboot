@@ -10,4 +10,5 @@ public interface IUserRoleService {
 	UserRole addUserRole(UserRole userRole);
 	UserRole updateUserRole(UserRole userRole);
 	UserRole deleteUserRole(int id);
+	int count();
 }

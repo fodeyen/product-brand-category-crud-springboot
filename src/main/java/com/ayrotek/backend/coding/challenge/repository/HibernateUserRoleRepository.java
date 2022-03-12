@@ -22,7 +22,7 @@ public class HibernateUserRoleRepository implements IUserRoleRepository{
 	public List<UserRole> getAllUserRoles() {
 		
 		Session session=entityManager.unwrap(Session.class);
-		List<UserRole> userRoles=session.createQuery("from User_role",UserRole.class).getResultList();		
+		List<UserRole> userRoles=session.createQuery("from UserRole",UserRole.class).getResultList();		
 		return userRoles;
 	}
 
@@ -49,6 +49,17 @@ public class HibernateUserRoleRepository implements IUserRoleRepository{
 		UserRole deleteToUserRole=session.get(UserRole.class,id);
 		session.delete(deleteToUserRole);
 		return deleteToUserRole;
+	}
+
+	@Transactional
+	@Override
+	public int count() {
+		Session session=entityManager.unwrap(Session.class);
+		List<UserRole> userRoles=session.createQuery("from UserRole",UserRole.class).getResultList();	
+		if(userRoles==null) {
+			return 0;
+		}
+		return userRoles.size();
 	}
 
 }
