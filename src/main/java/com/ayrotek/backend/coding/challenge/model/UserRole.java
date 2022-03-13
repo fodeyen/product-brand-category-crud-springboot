@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="roles")
-public class UserRole {
+public class UserRole extends AbstractAuditingEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

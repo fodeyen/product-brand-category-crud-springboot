@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="category")
-public class Category {
+public class Category extends AbstractAuditingEntity {
 
 	
 	@Column(name="category_id")

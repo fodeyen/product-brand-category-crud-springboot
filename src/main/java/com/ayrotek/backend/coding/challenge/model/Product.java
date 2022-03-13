@@ -2,8 +2,6 @@ package com.ayrotek.backend.coding.challenge.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,22 +9,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="product")
-@EntityListeners(AuditingEntityListener.class)
-public class Product {
+public class Product extends AbstractAuditingEntity {
 
 	@Column(name="product_id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int productId;
-	@CreatedBy
-	private  String createBy;
+	
+	
 	
 	@Column(name="product_code")
 	private String productCode;
@@ -66,7 +62,7 @@ public class Product {
 
 
 	public Product(int productId, String productCode, String productName, int stockQuantity, double unitPrice,
-			Brand brandId, Category categoryId,User id,String createdBy,UserRole roleId) {
+			Brand brandId, Category categoryId,User id,UserRole roleId) {
 		this.productId = productId;
 		this.productCode = productCode;
 		this.productName = productName;
@@ -75,7 +71,6 @@ public class Product {
 		this.brandId = brandId;
 		this.categoryId = categoryId;
 		this.id=id;
-		this.createBy=createdBy;
 		this.roleId=roleId;
 	}
 	
@@ -132,14 +127,7 @@ public class Product {
 	public void setId(User id) {
 		this.id = id;
 	}
-	
-	public String getCreateBy() {
-		return createBy;
-	}
 
-	public void setCreateBy(String createBy) {
-		this.createBy = createBy;
-	}
 
 	public UserRole getRoleId() {
 		return roleId;
